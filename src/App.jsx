@@ -4,30 +4,50 @@ import { TodoInput } from "./components/TodoInput"
 import { TodoList } from "./components/TodoList"
 import './index.css'
 import './fanta.css'
+import { useState } from "react"
 
-function App() {
-  const todos = [
-    { input: 'Hello! Add your first todo!', complete: true },
-  { input: 'Get the groceries!', complete: false },
-  { input: 'Learn how to web design', complete: false },
-  { input: 'Say hi to gran gran', complete: true },
-  ]
-
-
-
+  function App() {
+    // const todos = [
+    // { input: 'Hello! Add your first todo!', complete: true },
+    // { input: 'Get the groceries!', complete: false },
+    // { input: 'Learn how to web design', complete: false },
+    // { input: 'Say hi to gran gran', complete: true },
+    // ]
 
 
-  return (
-   <>
+  const [todos,setTodos] = useState([
+    { input: 'Hello! Add your first todo!', complete: true }
+  ])
+
+  function handleAddtodo(newTodo)
+  {
+    const newTodoList = [...todos, 
+      {input: newTodo, complete : false}]
+      setTodos(newTodoList)
+  }
+
+  function handleEditTodo()
+  {
+
+  }
+
+  function handleDeleteTodo()
+  {
+
+  }
 
 
-      <Header todos = {todos}/>
-      <Tabs todos = {todos}/>
-      <TodoList todos = {todos}/>
-      <TodoInput />
-   </>
-    
-  )
-}
+    return (
+    <>
+
+
+        <Header todos = {todos}/>
+        <Tabs todos = {todos}/>
+        <TodoList todos = {todos}/>
+        <TodoInput handleAddtodo={handleAddtodo} />
+    </>
+      
+    )
+  }
 
 export default App
