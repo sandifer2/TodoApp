@@ -4,7 +4,7 @@ export function TodoList()
 {
     return (
         <div>
-            <TodoCard/>
+            
         </div>
     )
 }
