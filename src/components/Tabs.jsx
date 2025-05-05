@@ -7,7 +7,7 @@ export function Tabs(props)
         <nav className="tab-container">
 
             {tabs.map((tab,tabIndex) => {
-                const numOfTasks = tabs  === 'All' ? 
+                const numOfTasks = tab  === 'All' ? 
                 todos.length :
                 tab === 'Open' ?
                 todos.filter(val => !val.complete).length
