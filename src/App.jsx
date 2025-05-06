@@ -4,7 +4,8 @@ import { TodoInput } from "./components/TodoInput"
 import { TodoList } from "./components/TodoList"
 import './index.css'
 import './fanta.css'
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
 
   function App() {
     // const todos = [
@@ -26,6 +27,7 @@ import { useState } from "react"
     const newTodoList = [...todos, 
       {input: newTodo, complete : false}]
       setTodos(newTodoList)
+      saveData(newTodoList)
   }
 
   function handleCompleteToDo(index) //update/edit
@@ -35,6 +37,7 @@ import { useState } from "react"
     completedTodo['complete'] = true
     newTodoList[index] = completedTodo
     setTodos(newTodoList)
+    saveData(newTodoList)
 
   }
 
@@ -45,8 +48,20 @@ import { useState } from "react"
 
     })
     setTodos(newTodoList)
+    saveData(newTodoList)
 
   }
+
+  function saveData(currTodos) //save to local storage
+  { 
+    localStorage.setItem('todo-app', JSON.stringify({ todos : currTodos}))
+  }
+
+  useEffect(()=>{
+    if(!localStorage|| !localStorage.getItem('todo-app')) {return} //gaurd clause\
+      let db = JSON.parse(localStorage.getItem('todo-app'))
+      setTodos(db.todos)
+    } ,[])
 
 
     return (
