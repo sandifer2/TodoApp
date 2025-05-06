@@ -19,8 +19,9 @@ import { useState } from "react"
     { input: 'Hello! Add your first todo!', complete: true }
   ])
 
-  function handleAddtodo(newTodo)
-  {
+  const [selectedTab, setSelectedTab] = useState('Open')
+
+  function handleAddtodo(newTodo) {
     const newTodoList = [...todos, 
       {input: newTodo, complete : false}]
       setTodos(newTodoList)
@@ -42,7 +43,9 @@ import { useState } from "react"
 
 
         <Header todos = {todos}/>
-        <Tabs todos = {todos}/>
+        <Tabs selectedTab={selectedTab} 
+        setSelectedTab = {setSelectedTab}
+        todos = {todos}/>
         <TodoList todos = {todos}/>
         <TodoInput handleAddtodo={handleAddtodo} />
     </>
