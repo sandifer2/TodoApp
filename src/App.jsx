@@ -21,19 +21,30 @@ import { useState } from "react"
 
   const [selectedTab, setSelectedTab] = useState('All')
 
-  function handleAddTodo(newTodo) {
+  function handleAddTodo(newTodo) // add
+  { 
     const newTodoList = [...todos, 
       {input: newTodo, complete : false}]
       setTodos(newTodoList)
   }
 
-  function handleEditTodo()
+  function handleCompleteToDo(index) //update/edit
   {
+    let newTodoList = [...todos]
+    let completedTodo = todos[index]
+    completedTodo['complete'] = true
+    newTodoList[index] = completedTodo
+    setTodos(newTodoList)
 
   }
 
-  function handleDeleteTodo()
+  function handleDeleteTodo(index) //delete
   {
+    let newTodoList = todos.filter((val, valIndex) => {
+      return valIndex !== index 
+
+    })
+    setTodos(newTodoList)
 
   }
 
@@ -46,7 +57,7 @@ import { useState } from "react"
         <Tabs selectedTab={selectedTab} 
         setSelectedTab = {setSelectedTab}
         todos = {todos}/>
-        <TodoList selectedTab = {selectedTab} todos = {todos}/>
+        <TodoList handleCompleteToDo={handleCompleteToDo} handleDeleteTodo = {handleDeleteTodo} selectedTab = {selectedTab} todos = {todos}/>
         <TodoInput handleAddTodo={handleAddTodo} />
     </>
       
