@@ -16,9 +16,7 @@ import { useState, useEffect } from "react"
     // ]
 
 
-  const [todos,setTodos] = useState([
-    { input: 'Hello! Add your first todo!', complete: true }
-  ])
+  const [todos,setTodos] = useState([{ input: 'Hello! Add your first todo!', complete: true }])
 
   const [selectedTab, setSelectedTab] = useState('All')
 
@@ -57,10 +55,10 @@ import { useState, useEffect } from "react"
     localStorage.setItem('todo-app', JSON.stringify({ todos : currTodos}))
   }
 
-  useEffect(()=>{
-    if(!localStorage|| !localStorage.getItem('todo-app')) {return} //gaurd clause\
-      let db = JSON.parse(localStorage.getItem('todo-app'))
-      setTodos(db.todos)
+  useEffect(()=>{ // ~when we get access to local storage, save to local storage 
+    if (!localStorage || !localStorage.getItem('todo-app')) { return }
+    let db = JSON.parse(localStorage.getItem('todo-app'))
+    setTodos(db.todos)
     } ,[])
 
 
